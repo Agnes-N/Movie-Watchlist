@@ -39,8 +39,10 @@ def movie(id):
     movie = get_movie(id)
     title = f'{movie.title}'
     reviews = Review.get_reviews(movie.id)
+    myUser = Review.query.all()
+    print(myUser)
 
-    return render_template('movie.html',title = title,movie = movie,reviews = reviews)
+    return render_template('movie.html',title = title,movie = movie,reviews = reviews,myUser = myUser)
 
 
 
@@ -61,14 +63,15 @@ def search(movie_name):
 def new_review(id):
     form = ReviewForm()
     movie = get_movie(id)
+    
+
     if form.validate_on_submit():
         title = form.title.data
         review = form.review.data
 
         # Updated review instance
         new_review = Review(movie_id=movie.id,movie_title=title,image_path=movie.poster,movie_review=review,user=current_user)
-        print(review)
-
+       
         # save review method
         new_review.save_review()
         return redirect(url_for('.movie',id = movie.id ))
