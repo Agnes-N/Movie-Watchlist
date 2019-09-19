@@ -34,15 +34,15 @@
         <h1>Reviews</h1>
         <hr>
       
-        {% for review_item in myUser %}
+        <!-- {% for review_item in myUser %}
             <li>{{review_item.movie_review}}</li>
-        {% endfor %}
+        {% endfor %} -->
 
-        <!-- {% if review_item %}
-        {{macro.displayReviews(review_item)}}
+        {% if myUser %}
+        {{macro.displayReviews(myUser)}}
         {% else%}
         <h3 class="text-center">This movie has no reviews </h3>           
-        {% endif %} -->
+        {% endif %}
     </div>
 
 </div>

@@ -39,10 +39,13 @@ def movie(id):
     movie = get_movie(id)
     title = f'{movie.title}'
     reviews = Review.get_reviews(movie.id)
-    myUser = Review.query.all()
-    print(myUser)
+    # myUser = Review.query.all()
+    myUser = Review.query.filter_by(movie_id=id).all()
 
-    return render_template('movie.html',title = title,movie = movie,reviews = reviews,myUser = myUser)
+    print(myUser)
+    print(id)
+
+    return render_template('movie.html',title = title,movie = movie,reviews = reviews,myUser=myUser)
 
 
 
